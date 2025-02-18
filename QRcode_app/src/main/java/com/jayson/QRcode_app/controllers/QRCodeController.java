@@ -47,9 +47,9 @@ public class QRCodeController {
         return qrCodeRepository.save(qrCode);
     }
 
-    @Operation(summary = "Decode QR Code", description = "Decodes a QR code from an uploaded image file and returns the embedded text or URL.")
-    @PostMapping("/decode")
-    public String decodeQRCode(@RequestParam("file") MultipartFile file) throws Exception {
-        return qrCodeService.decodeQRCode(file);
-    }
+//    @Operation(summary = "Decode QR Code", description = "Decodes a QR code from an uploaded image file and returns the embedded text or URL.")
+//    @PostMapping("/decode")
+//    public String decodeQRCode(@RequestParam("file") MultipartFile file) throws Exception {
+//        return qrCodeService.decodeQRCode(file);
+//    }
 }
