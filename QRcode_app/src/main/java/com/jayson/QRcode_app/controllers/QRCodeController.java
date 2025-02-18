@@ -31,10 +31,22 @@ public class QRCodeController {
     })
     @GetMapping("/generate")
     public String generateQRCode(
-            @Parameter(description = "Text or URL to generate the QR Code for", required = true)
-            @RequestParam String text) throws Exception {
-        return qrCodeService.generateQRCode(text);
+            @RequestParam String text,
+            @RequestParam(required = false) String fgColor,
+            @RequestParam(required = false) String bgColor) throws Exception {
+
+        // Set default colors if not provided
+        if (fgColor == null) fgColor = "#000000";  // Default black for foreground
+        if (bgColor == null) bgColor = "#ffffff";  // Default white for background
+
+        // Log the received colors for debugging
+        System.out.println("Foreground Color: " + fgColor);
+        System.out.println("Background Color: " + bgColor);
+
+        return qrCodeService.generateQRCode(text, fgColor, bgColor);
     }
+
+
 
     @Operation(summary = "Save QR Code", description = "Saves the generated QR code to the database.")
     @ApiResponses(value = {

@@ -11,14 +11,24 @@ async function generateQRCode() {
         return;
     }
 
+    // Get color selections
+    const foregroundColor = document.getElementById("foregroundColor").value;
+    const backgroundColor = document.getElementById("backgroundColor").value;
+
+    console.log('Foreground Color:', foregroundColor);  // Log the foreground color
+    console.log('Background Color:', backgroundColor);  // Log the background color
+
     // Show a loading indicator
     const generateButton = document.getElementById("generateButton");
     generateButton.textContent = "Generating...";
     generateButton.disabled = true;
 
     try {
-        // Make the request to the backend
-        const response = await fetch(`/api/qr/generate?text=${encodeURIComponent(text)}`);
+        // Make the request to the backend with color parameters
+        const response = await fetch(
+            `/api/qr/generate?text=${encodeURIComponent(text)}&fgColor=${encodeURIComponent(foregroundColor)}&bgColor=${encodeURIComponent(backgroundColor)}`
+        );
+
         if (!response.ok) {
             throw new Error("Error generating QR code");
         }
