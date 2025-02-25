@@ -40,6 +40,7 @@ public class QRCodeController {
         if (bgColor == null) bgColor = "#ffffff";  // Default white for background
 
         // Log the received colors for debugging
+        System.out.println("text:   " + text);
         System.out.println("Foreground Color: " + fgColor);
         System.out.println("Background Color: " + bgColor);
 

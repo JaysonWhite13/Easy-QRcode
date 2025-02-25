@@ -1,0 +1,6 @@
+/Users/jaysonwhite/SpringBoot/Easy-QRcode/QRcode_app/src/main/java/com/jayson/QRcode_app/QRcodeAppApplication.java
+/Users/jaysonwhite/SpringBoot/Easy-QRcode/QRcode_app/src/main/java/com/jayson/QRcode_app/config/SwaggerConfig.java
+/Users/jaysonwhite/SpringBoot/Easy-QRcode/QRcode_app/src/main/java/com/jayson/QRcode_app/controllers/QRCodeController.java
+/Users/jaysonwhite/SpringBoot/Easy-QRcode/QRcode_app/src/main/java/com/jayson/QRcode_app/models/QRCode.java
+/Users/jaysonwhite/SpringBoot/Easy-QRcode/QRcode_app/src/main/java/com/jayson/QRcode_app/repository/QRCodeRepository.java
+/Users/jaysonwhite/SpringBoot/Easy-QRcode/QRcode_app/src/main/java/com/jayson/QRcode_app/services/QRCodeService.java

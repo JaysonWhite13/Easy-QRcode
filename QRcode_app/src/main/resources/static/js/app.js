@@ -1,53 +1,40 @@
 async function generateQRCode() {
-    const textInput = document.getElementById("textInput");
-    const resultContainer = document.getElementById("resultContainer");
-    const qrCodeImage = document.getElementById("qrCodeImage");
-    const downloadButton = document.getElementById("downloadButton");
+    console.log("🔹 generateQRCode() function called"); // Debug log
 
-    // Get text input
+    const textInput = document.getElementById("textInput");
     const text = textInput.value;
+    console.log("📌 Text Input:", text);
+
     if (!text) {
         alert("Please enter some text or URL.");
         return;
     }
 
-    // Get color selections
+    // Debugging colors
     const foregroundColor = document.getElementById("foregroundColor").value;
     const backgroundColor = document.getElementById("backgroundColor").value;
-
-    console.log('Foreground Color:', foregroundColor);  // Log the foreground color
-    console.log('Background Color:', backgroundColor);  // Log the background color
-
-    // Show a loading indicator
-    const generateButton = document.getElementById("generateButton");
-    generateButton.textContent = "Generating...";
-    generateButton.disabled = true;
+    console.log("🎨 Foreground Color:", foregroundColor);
+    console.log("🎨 Background Color:", backgroundColor);
 
     try {
-        // Make the request to the backend with color parameters
-        const response = await fetch(
-            `/api/qr/generate?text=${encodeURIComponent(text)}&fgColor=${encodeURIComponent(foregroundColor)}&bgColor=${encodeURIComponent(backgroundColor)}`
-        );
+        console.log("🚀 Sending request to backend...");
+
+        const response = await fetch(`/api/qr/generate?text=${encodeURIComponent(text)}&fgColor=${encodeURIComponent(foregroundColor)}&bgColor=${encodeURIComponent(backgroundColor)}`);
+
+        console.log("✅ Request sent, waiting for response...");
 
         if (!response.ok) {
             throw new Error("Error generating QR code");
         }
 
-        // Get the response as plain text (Base64 image data)
         const qrCodeImageUrl = await response.text();
+        console.log("🖼️ QR Code Generated:", qrCodeImageUrl);
 
-        // Set the image source and show the result container
-        qrCodeImage.src = qrCodeImageUrl;
-        resultContainer.classList.remove("hidden");
+        document.getElementById("qrCodeImage").src = qrCodeImageUrl;
+        document.getElementById("resultContainer").classList.remove("hidden");
 
-        // Enable the download button and update its link
-        downloadButton.style.display = "inline-block"; // Ensure it becomes visible
-        downloadButton.href = qrCodeImageUrl; // Set the download link to the Base64 data
     } catch (error) {
-        alert("Error generating QR code: " + error.message);
-    } finally {
-        // Reset the button text and enable it again
-        generateButton.textContent = "Generate QR Code";
-        generateButton.disabled = false;
+        console.error("❌ Error generating QR code:", error);
+        alert("Error: " + error.message);
     }
 }
